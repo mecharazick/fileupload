@@ -15,13 +15,6 @@ router.get("/test", (req, res) => {
 
 router.post("/", async (req, res) => {
   const form = formidable({});
-  // form.parse(req, (err, fields, files) => {
-  //   if (err) {
-  //     next(err);
-  //     return;
-  //   }
-  //   res.json({ fields, files });
-  // });
   form
     .parse(req, (err, fields, files) => {
       if (err) {
@@ -33,7 +26,7 @@ router.post("/", async (req, res) => {
       const fileField = files.file;
       for (const file of fileField) {
         // Specify the destination directory to save the file
-        const uploadDir = path.join(__dirname, "uploads");
+        const uploadDir = path.join(__dirname, ".." ,"uploads");
 
         // Create the directory if it doesn't exist
         if (!fs.existsSync(uploadDir)) {
