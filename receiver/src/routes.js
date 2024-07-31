@@ -6,7 +6,7 @@ const { formidable } = require("formidable");
 router.get("/test", (req, res) => {
   res.send(`
     <h1>Hello hellooooo</h1>
-    <form enctype="multipart/form-data" method="post" action="http://localhost:3050/upload">
+    <form enctype="multipart/form-data" method="post" action="http://localhost:${process.env.PORT}/upload">
       <input type="file" name="file" />
       <input type="submit" />
     </form>
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
       const fileField = files.file;
       for (const file of fileField) {
         // Specify the destination directory to save the file
-        const uploadDir = path.join(__dirname, ".." ,"uploads");
+        const uploadDir = path.join(__dirname, "..", "..", "uploads");
 
         // Create the directory if it doesn't exist
         if (!fs.existsSync(uploadDir)) {
